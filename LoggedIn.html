@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+
+<head>
+	<title> Logged </title>
+</head>
+<body>
+<?php
+session_start();
+$SESSION['userLogged'] = $_POST['user'];
+
+	
+	$dirHandle = "";
+	$count = 1;
+	$found = 0;
+	$users = file('users.txt');
+	$dir = "~/public_html/summer2015-module2-adam-sandor-425989/groupProject/";
+	foreach ($users as $key => $value) {
+		if (strcmp($_SESSION['userLogged']) == 0 ) {
+			#successful login
+			$found = 1;
+			$dirHandle = opendir($dir);
+			scandir($dirHandle);
+		}
+		
+	}
+	if ($found == 0){ #not found on list
+			mkdir( $dir, 0700);
+			$dirHandle = opendir($dir);
+			scandir($dirHandle);
+	}
+	
+	
+?>
+
+</body>
+
+</html>
